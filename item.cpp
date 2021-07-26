@@ -1,6 +1,8 @@
 #include "item.h"
 
-item::item(QWidget *parent) : QWidget(parent), nameItem("Apple")
+item::item(QWidget *parent) :
+    QWidget(parent),
+    nameItem("Apple")
 {
     QVBoxLayout* layout = new QVBoxLayout;
     itemImage = new QLabel();

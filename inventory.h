@@ -13,8 +13,9 @@ class inventory : public QTableWidget
     Q_OBJECT
 public:
     explicit inventory(QWidget *parent = nullptr);
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
+    void dragMoveEvent(QDragMoveEvent *event) override;
 };
 
 #endif // INVENTORY_H

@@ -27,3 +27,4 @@ void MainWindow::on_btnMainMenu_clicked()
     ui->gameField->setEnabled(!ui->gameField->isEnabled());
     ui->mainMenu->show();
 }
+
