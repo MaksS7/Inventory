@@ -1,66 +1,54 @@
 #include "inventory.h"
 
 inventory::inventory(QWidget *parent):
-    QTableWidget(parent)
+    QTableWidget(parent),
+    cColumn(3),
+    cRow(3)
 {
-    setDragDropMode(QAbstractItemView::InternalMove);
-    setDragEnabled(true);
-    setAcceptDrops(true);
+//    setColumnCount(columnCount);
+//    setRowCount(rowCount);
+    setObjectName(QString::fromUtf8("tableWidget"));
+    setGeometry(QRect(0, 60, 302, 302));
+    horizontalHeader()->setVisible(false);
+    verticalHeader()->setVisible(false);
+    horizontalHeader()->setDefaultSectionSize(100);
+    verticalHeader()->setDefaultSectionSize(100);
+    setDragDropMode(QAbstractItemView::DragDrop);
+    setDragDropOverwriteMode(true);
     setDropIndicatorShown(true);
-    setColumnCount(3);
-    setRowCount(3);
-}
 
-void inventory::dragEnterEvent(QDragEnterEvent *event)
-{
-//    qDebug() << "Enter:";
-//    qDebug() << event->pos();
-    if (event->source() == this) {
-        event->setDropAction(Qt::MoveAction);
-        event->accept();
-    } else {
-        event->acceptProposedAction();
-    }
-}
-
-void inventory::dragMoveEvent(QDragMoveEvent *event)
-{
-//    qDebug() << "move:";
-//    qDebug() << event->pos();
-    if (event->source() == this) {
-        event->setDropAction(Qt::MoveAction);
-        event->accept();
-    } else {
-        event->acceptProposedAction();
-    }
 }
 
 void inventory::dropEvent(QDropEvent *event)
 {
-    QTableWidgetItem* test = itemAt(event->pos());
-    if  (test != 0)
-    {
-        qDebug() << event->pos();
-        if ( event->source() == this ) // same table, move entry
-        {
-            event->setDropAction( Qt::MoveAction );
-            event->accept();
-        }
-        else // different table, add entry
-        {
-            printf("Different table\n");
-            event->acceptProposedAction();
-        }
+    // проверяем что источник - родная таблица
+    qDebug() << itemAt(10, 10);
+//    if (event->source()!=this) {
+//        // неродной источник обработаем обработчиком по умолчанию
+//        QTableWidget::dropEvent(event);
+//    }
 
-            QTableWidgetItem *source = itemAt(event->pos());
-            qDebug() << source->column();
-            qDebug() << source->row();
-            source->setText(itemAt(event->pos())->text());
-    }
-//    qDebug() << this->itemAt(10,10)->column();
+//    // определяем цель вставки
+//    int targetRow;
 //    QTableWidgetItem *targetItem=itemAt(event->pos());
-//    qDebug()<<targetItem->column();
-//    qDebug()<<targetItem->row();
+//    if (targetItem!=0) {
+//        targetRow=targetItem->row();
+//    } else {
+//        targetRow = cRow;
+//    }
+//    qDebug() << targetRow;
+//    // запоминаем номера строк
+//    QTableWidgetItem *item;
+//    QList<int> selRows;
+//    foreach (item, selectedItems()) {
+//        if (!selRows.contains(item->row())) {
+//            // запоминаем номер строки
+//            selRows.append(item->row());
+//        }
+//    }
+//    if (selRows.isEmpty()) {
+//        event->accept();  // не будем игнорить сообщение, скажем что обработали и передадим дальше
+//        return;
+//    }
 
-    event->acceptProposedAction();
 }
