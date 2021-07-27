@@ -28,29 +28,28 @@ inventory::inventory(QWidget *parent):
 void inventory::dropEvent(QDropEvent *event)
 {
     QModelIndex index = indexAt(event->pos());
-
-    if (event->source() == this) {
+    if (event->source() == this && currentRow() >= 0 && currentColumn() >= 0) {
         if (itemAt(event->pos()) == 0) {
             setItem(index.row(), index.column(), takeItem(currentRow(), currentColumn()));
-            vInfoTable[index.row() * cRow + index.column()] = vInfoTable[currentIndex().row() * cRow + currentIndex().column()];
-            vInfoTable[currentIndex().row() * cRow + currentIndex().column()] = itemCellInfo;
+            vInfoTable[index.row() * cColumn + index.column()] = vInfoTable[currentIndex().row() * cColumn + currentIndex().column()];
+            vInfoTable[currentIndex().row() * cColumn + currentIndex().column()] = itemCellInfo;
         } else {
-            if (vInfoTable[index.row() * cRow + index.column()].itemName
-                    == vInfoTable[currentIndex().row() * cRow + currentIndex().column()].itemName) {
-                vInfoTable[index.row() * cRow + index.column()].count += vInfoTable[currentIndex().row() * cRow + currentIndex().column()].count;
-                vInfoTable[currentIndex().row() * cRow + currentIndex().column()] = itemCellInfo;
-                itemAt(event->pos())->setText(QString::number(vInfoTable[index.row() * cRow + index.column()].count));
+            if (vInfoTable[index.row() * cColumn + index.column()].itemName
+                    == vInfoTable[currentIndex().row() * cColumn + currentIndex().column()].itemName) {
+                vInfoTable[index.row() * cColumn + index.column()].count += vInfoTable[currentIndex().row() * cColumn + currentIndex().column()].count;
+                vInfoTable[currentIndex().row() * cColumn + currentIndex().column()] = itemCellInfo;
+                itemAt(event->pos())->setText(QString::number(vInfoTable[index.row() * cColumn + index.column()].count));
                 takeItem(currentRow(), currentColumn());
             }
         }
     } else {
-        if (!vInfoTable[index.row() * cRow + index.column()].count) {
-            vInfoTable[index.row() * cRow + index.column()].itemName = event->mimeData()->text();
-            setItem(index.row(), index.column(), new QTableWidgetItem(QString::number(++vInfoTable[index.row() * cRow + index.column()].count)));
+        if (!vInfoTable[index.row() * cColumn + index.column()].count) {
+            vInfoTable[index.row() * cColumn + index.column()].itemName = event->mimeData()->text();
+            setItem(index.row(), index.column(), new QTableWidgetItem(QString::number(++vInfoTable[index.row() * cColumn + index.column()].count)));
             itemAt(event->pos())->setTextAlignment(Qt::AlignBottom | Qt::AlignRight);
             itemAt(event->pos())->setBackground(QBrush(qvariant_cast<QImage>(event->mimeData()->imageData()).scaled(100,100)));
-        } else if(vInfoTable[index.row() * cRow + index.column()].itemName == event->mimeData()->text()) {
-            itemAt(event->pos())->setText(QString::number(++vInfoTable[index.row() * cRow + index.column()].count));
+        } else if(vInfoTable[index.row() * cColumn + index.column()].itemName == event->mimeData()->text()) {
+            itemAt(event->pos())->setText(QString::number(++vInfoTable[index.row() * cColumn + index.column()].count));
         }
     }
 }
@@ -64,8 +63,8 @@ void inventory::dragEnterEvent(QDragEnterEvent *event)
 void inventory::rightClickOnCell(int _row, int _column)
 {
     if (item(_row, _column) != 0) {
-        item(_row, _column)->setText(QString::number(--vInfoTable[_row * cRow + _column].count));
-        if (vInfoTable[_row * cRow + _column].count == 0) {
+        item(_row, _column)->setText(QString::number(--vInfoTable[_row * cColumn + _column].count));
+        if (vInfoTable[_row * cColumn + _column].count == 0) {
             takeItem(_row, _column);
         }
     }
@@ -78,10 +77,31 @@ void inventory::mousePressEvent(QMouseEvent *event)
         emit isRightClickOnCell(index.row(), index.column());
     } else if (event->button() == Qt::LeftButton) {
         QTableWidget::mousePressEvent(event);
+        startPosition = event->pos();
     }
-
 }
 
 void inventory::mouseMoveEvent( QMouseEvent *event ) {
     QTableWidget::mouseMoveEvent(event);
+//    QModelIndex index = indexAt(event->pos());
+//    QTableWidgetItem *cit = item(index.row(), index.column());
+//    if (cit != 0) {
+//        if (!(event->buttons() & Qt::LeftButton)){
+//            return;
+//        }
+//        if ((event->pos() - startPosition).manhattanLength()
+//                < QApplication::startDragDistance()) {
+//            return;
+//        }
+//        QDrag* drag = new QDrag(this);
+
+//        drag->setMimeData(mimeData({cit}));
+//        drag->setPixmap(cit->background().texture());
+//        drag->setHotSpot(QPoint(horizontalHeader()->sectionSize(0) / 2,
+//                                verticalHeader()->sectionSize(0) / 2));
+//        drag->exec(Qt::MoveAction);
+//    } else {
+//        event->ignore();
+//    }
+
 }
