@@ -2,7 +2,7 @@
 
 item::item(QWidget *parent) :
     QWidget(parent),
-    nameItem("Apple")
+    nameItem("camera")
 {
     QVBoxLayout* layout = new QVBoxLayout;
     itemImage = new QLabel();

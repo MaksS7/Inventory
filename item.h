@@ -16,12 +16,11 @@ class item : public QWidget
     Q_OBJECT
 public:
     explicit item(QWidget *parent = nullptr);
-
+    /*add "get name and logo*/
 private:
     const QString nameItem;
-    const QPixmap logo = QPixmap(":/Images/apple.jpg");
+    const QPixmap logo = QPixmap(":/Images/"+ nameItem +".jpg");
     QLabel *itemImage;
-signals:
 
 protected:
     void mousePressEvent(QMouseEvent* event);

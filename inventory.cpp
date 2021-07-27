@@ -1,54 +1,54 @@
 #include "inventory.h"
 
+
 inventory::inventory(QWidget *parent):
     QTableWidget(parent),
     cColumn(3),
     cRow(3)
 {
-//    setColumnCount(columnCount);
-//    setRowCount(rowCount);
+    setColumnCount(cColumn);
+    setRowCount(cRow);
     setObjectName(QString::fromUtf8("tableWidget"));
     setGeometry(QRect(0, 60, 302, 302));
     horizontalHeader()->setVisible(false);
     verticalHeader()->setVisible(false);
     horizontalHeader()->setDefaultSectionSize(100);
     verticalHeader()->setDefaultSectionSize(100);
-    setDragDropMode(QAbstractItemView::DragDrop);
+    setDragDropMode(QAbstractItemView::InternalMove);
     setDragDropOverwriteMode(true);
     setDropIndicatorShown(true);
-
+    vInfoTable.fill(itemCellInfo, (cColumn * cRow));
 }
 
 void inventory::dropEvent(QDropEvent *event)
 {
-    // проверяем что источник - родная таблица
-    qDebug() << itemAt(10, 10);
-//    if (event->source()!=this) {
-//        // неродной источник обработаем обработчиком по умолчанию
-//        QTableWidget::dropEvent(event);
-//    }
-
-//    // определяем цель вставки
-//    int targetRow;
-//    QTableWidgetItem *targetItem=itemAt(event->pos());
-//    if (targetItem!=0) {
-//        targetRow=targetItem->row();
-//    } else {
-//        targetRow = cRow;
-//    }
-//    qDebug() << targetRow;
-//    // запоминаем номера строк
-//    QTableWidgetItem *item;
-//    QList<int> selRows;
-//    foreach (item, selectedItems()) {
-//        if (!selRows.contains(item->row())) {
-//            // запоминаем номер строки
-//            selRows.append(item->row());
-//        }
-//    }
-//    if (selRows.isEmpty()) {
-//        event->accept();  // не будем игнорить сообщение, скажем что обработали и передадим дальше
-//        return;
-//    }
-
+    QModelIndex index = indexAt(event->pos());
+    if (event->source() == this) {
+        if (itemAt(event->pos()) == 0) {
+//            qDebug() << currentIndex();
+//            qDebug() << index;
+            setItem(index.row(), index.column(), takeItem(currentRow(), currentColumn()));
+            vInfoTable[index.row() * cRow + index.column()] = vInfoTable[currentIndex().row() * cRow + currentIndex().column()];
+            vInfoTable[currentIndex().row() * cRow + currentIndex().column()] = itemCellInfo;
+//            itemAt(event->pos())->setTextAlignment(Qt::AlignBottom | Qt::AlignRight);
+//            itemAt(event->pos())->setBackground(QBrush(QPixmap(":/Images/camera.jpg").scaled(100,100)));
+        }
+    } else {
+        if (!vInfoTable[index.row() * cRow + index.column()].count) {
+            vInfoTable[index.row() * cRow + index.column()].itemName = event->mimeData()->text();
+            setItem(index.row(), index.column(), new QTableWidgetItem(QString::number(++vInfoTable[index.row() * cRow + index.column()].count)));
+            itemAt(event->pos())->setTextAlignment(Qt::AlignBottom | Qt::AlignRight);
+            itemAt(event->pos())->setBackground(QBrush(QPixmap(":/Images/camera.jpg").scaled(100,100)));
+        } else if(vInfoTable[index.row() * cRow + index.column()].itemName == event->mimeData()->text()) {
+            itemAt(event->pos())->setText(QString::number(++vInfoTable[index.row() * cRow + index.column()].count));
+        }
+    }
+//    qDebug() << indexAt(event->pos());
 }
+
+void inventory::dragEnterEvent(QDragEnterEvent *event)
+{
+    event->acceptProposedAction();
+}
+
+

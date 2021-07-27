@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/Images">
         <file>apple.jpg</file>
+        <file>camera.jpg</file>
     </qresource>
 </RCC>
