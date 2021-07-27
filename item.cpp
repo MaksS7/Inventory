@@ -1,8 +1,10 @@
 #include "item.h"
+#include <QDebug>
 
 item::item(QWidget *parent) :
     QWidget(parent),
-    nameItem("camera")
+    nameItem("camera"),
+    logo(QPixmap(":/Images/"+ nameItem +".jpg").scaled(100,100))
 {
     QVBoxLayout* layout = new QVBoxLayout;
     itemImage = new QLabel();
@@ -30,8 +32,9 @@ void item::mouseMoveEvent( QMouseEvent *event ) {
     QMimeData* mimeData = new QMimeData;
     mimeData->setText(this->nameItem);
     mimeData->setParent(this);
+    mimeData->setImageData(logo);
     drag->setMimeData(mimeData);
-    drag->setPixmap(this->logo.scaled(100,100));
+    drag->setPixmap(this->logo);
     drag->setHotSpot(QPoint(this->logo.size().width() / 2,
                             this->logo.size().height() / 2));
     drag->exec(Qt::MoveAction);

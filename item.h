@@ -19,7 +19,7 @@ public:
     /*add "get name and logo*/
 private:
     const QString nameItem;
-    const QPixmap logo = QPixmap(":/Images/"+ nameItem +".jpg");
+    const QPixmap logo;
     QLabel *itemImage;
 
 protected:
