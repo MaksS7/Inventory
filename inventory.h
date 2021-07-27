@@ -13,6 +13,8 @@
 #include <QModelIndex>
 #include "item.h"
 #include <QVector>
+#include <QPalette>
+#include <QSound>
 
 class inventory : public QTableWidget
 {
@@ -28,6 +30,7 @@ signals:
 
 public slots:
     void rightClickOnCell(int _row, int _column);
+    void clear();
 
 private:
     struct cellInfo
@@ -39,11 +42,10 @@ private:
     QVector<cellInfo> vInfoTable;
     int cColumn;
     int cRow;
+    QSound soundDorPlay;
 
 protected:
     void mousePressEvent(QMouseEvent* event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    QPoint startPosition;
 };
 
 #endif // INVENTORY_H

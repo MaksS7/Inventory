@@ -19,6 +19,7 @@ void MainWindow::on_btnNewGame_clicked()
 {
     ui->gameField->setEnabled(!ui->gameField->isEnabled());
     ui->mainMenu->close();
+    ui->tableWidget->clear();
 }
 
 

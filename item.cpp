@@ -8,7 +8,7 @@ item::item(QWidget *parent) :
 {
     QVBoxLayout* layout = new QVBoxLayout;
     itemImage = new QLabel();
-    itemImage->setPixmap(logo.scaled(100,100));
+    itemImage->setPixmap(logo);
     layout->addWidget(itemImage, 0, Qt::AlignCenter);
     itemImage->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     setLayout(layout);
@@ -31,7 +31,6 @@ void item::mouseMoveEvent( QMouseEvent *event ) {
     QDrag* drag = new QDrag(this);
     QMimeData* mimeData = new QMimeData;
     mimeData->setText(this->nameItem);
-    mimeData->setParent(this);
     mimeData->setImageData(logo);
     drag->setMimeData(mimeData);
     drag->setPixmap(this->logo);
