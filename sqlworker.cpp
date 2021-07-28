@@ -1,8 +1,8 @@
 #include "sqlworker.h"
 #include <QDebug>
-
+/* добавить автоматическую генерацию бд*/
 sqlWorker::sqlWorker():
-    path("/home/user/fromGit/Qt_testTask/database.db")
+    path("C:/Users/vfrcb/Documents/GitHub/testTask/database.db")
 {
 }
 

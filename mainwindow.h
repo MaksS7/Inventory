@@ -25,7 +25,9 @@ private slots:
     void on_btnMainMenu_clicked();
 
 private:
-    userTableItem *items;
+//    userTableItem *items;
+    inventory *userInventory;
+    userTableItem *userItem;
 //    sqlWorker sqlDb;
     Ui::MainWindow *ui;
 

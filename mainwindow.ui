@@ -132,7 +132,7 @@
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>170</y>
+       <y>50</y>
        <width>100</width>
        <height>100</height>
       </rect>
@@ -156,68 +156,27 @@
       <string notr="true"/>
      </property>
     </widget>
-    <widget class="inventory" name="tableWidget">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>100</y>
-       <width>302</width>
-       <height>302</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
-     </property>
-    </widget>
-    <widget class="QTableWidget" name="tableWidget_2">
+    <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>50</y>
-       <width>100</width>
-       <height>100</height>
+       <y>180</y>
+       <width>102</width>
+       <height>102</height>
       </rect>
      </property>
-     <property name="dragEnabled">
-      <bool>true</bool>
+     <layout class="QVBoxLayout" name="vBoxLayoutItem"/>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>441</width>
+       <height>391</height>
+      </rect>
      </property>
-     <property name="dragDropMode">
-      <enum>QAbstractItemView::DragOnly</enum>
-     </property>
-     <property name="defaultDropAction">
-      <enum>Qt::CopyAction</enum>
-     </property>
-     <property name="rowCount">
-      <number>1</number>
-     </property>
-     <property name="columnCount">
-      <number>1</number>
-     </property>
-     <attribute name="horizontalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-     <attribute name="horizontalHeaderHighlightSections">
-      <bool>true</bool>
-     </attribute>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-     <attribute name="verticalHeaderDefaultSectionSize">
-      <number>100</number>
-     </attribute>
-     <row/>
-     <column/>
-     <item row="0" column="0">
-      <property name="text">
-       <string>222</string>
-      </property>
-     </item>
+     <layout class="QVBoxLayout" name="vBoxLayoutInventory"/>
     </widget>
    </widget>
   </widget>
@@ -227,7 +186,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -239,11 +198,6 @@
    <extends>QWidget</extends>
    <header>item.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>inventory</class>
-   <extends>QTableWidget</extends>
-   <header>inventory.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

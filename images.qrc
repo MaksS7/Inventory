@@ -4,6 +4,9 @@
         <file>camera.jpg</file>
     </qresource>
     <qresource prefix="/audio">
-        <file>soundApple.wav</file>
+        <file>soundapple.wav</file>
+    </qresource>
+    <qresource prefix="/db">
+        <file>database.db</file>
     </qresource>
 </RCC>

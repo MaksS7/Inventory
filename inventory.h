@@ -11,19 +11,20 @@
 #include <QTableWidgetItem>
 #include <QIcon>
 #include <QModelIndex>
-#include "item.h"
+//#include "item.h"
 #include <QVector>
 #include <QPalette>
 #include <QSound>
 #include "sqlworker.h"
+#include "usertableitem.h"
 
 class inventory : public QTableWidget
 {
     Q_OBJECT
 
 public:
-    explicit inventory(QWidget *parent = nullptr);
-    ~inventory();
+    explicit inventory(QWidget *parent = nullptr, int countColumn = 1, int countRow = 1);
+     ~inventory() override;
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
 
@@ -44,13 +45,11 @@ private:
     QVector<cellInfo> vInfoTable;
     int cColumn;
     int cRow;
-    QSound soundDorPlay;
-    sqlWorker sqlDataBase;
+//    sqlWorker sqlDataBase;
 
 protected:
     bool dropMimeData(int row, int column, const QMimeData *data, Qt::DropAction action) override;
     QMimeData *mimeData(const QList<QTableWidgetItem *> items) const override;
-    QList<QTableWidgetItem *> items(const QMimeData *data) const;
     void mousePressEvent(QMouseEvent* event) override;
 };
 
