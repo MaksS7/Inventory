@@ -1,4 +1,4 @@
-QT       += core gui multimedia
+QT       += core gui multimedia sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,12 +12,16 @@ SOURCES += \
     inventory.cpp \
     item.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    sqlworker.cpp \
+    usertableitem.cpp
 
 HEADERS += \
     inventory.h \
     item.h \
-    mainwindow.h
+    mainwindow.h \
+    sqlworker.h \
+    usertableitem.h
 
 FORMS += \
     mainwindow.ui

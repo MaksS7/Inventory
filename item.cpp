@@ -9,8 +9,8 @@ item::item(QWidget *parent) :
     QVBoxLayout* layout = new QVBoxLayout;
     itemImage = new QLabel();
     itemImage->setPixmap(logo);
-    layout->addWidget(itemImage, 0, Qt::AlignCenter);
     itemImage->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    layout->addWidget(itemImage, 0, Qt::AlignHCenter|Qt::AlignVCenter);
     setLayout(layout);
 }
 

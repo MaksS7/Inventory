@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "inventory.h"
 #include "item.h"
+#include "usertableitem.h"
+//#include "sqlworker.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +25,8 @@ private slots:
     void on_btnMainMenu_clicked();
 
 private:
+    userTableItem *items;
+//    sqlWorker sqlDb;
     Ui::MainWindow *ui;
 
 

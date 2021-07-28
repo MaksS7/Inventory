@@ -1,12 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , items(new userTableItem("camera"))
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->gameField->setEnabled(false);
+    ui->tableWidget_2->setItem(0,0,items);
+//    if (!sqlDb.connectToDataBase()) {
+//        qWarning() << "Can't connection to bd!";
+//    }
+//    sqlDb.selectItemFromDataBase(1);
 }
 
 MainWindow::~MainWindow()

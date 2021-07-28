@@ -15,6 +15,7 @@
 #include <QVector>
 #include <QPalette>
 #include <QSound>
+#include "sqlworker.h"
 
 class inventory : public QTableWidget
 {
@@ -22,6 +23,7 @@ class inventory : public QTableWidget
 
 public:
     explicit inventory(QWidget *parent = nullptr);
+    ~inventory();
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
 
@@ -43,8 +45,12 @@ private:
     int cColumn;
     int cRow;
     QSound soundDorPlay;
+    sqlWorker sqlDataBase;
 
 protected:
+    bool dropMimeData(int row, int column, const QMimeData *data, Qt::DropAction action) override;
+    QMimeData *mimeData(const QList<QTableWidgetItem *> items) const override;
+    QList<QTableWidgetItem *> items(const QMimeData *data) const;
     void mousePressEvent(QMouseEvent* event) override;
 };
 
