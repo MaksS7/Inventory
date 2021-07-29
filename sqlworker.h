@@ -9,18 +9,22 @@
 class sqlWorker
 {
 public:
-    sqlWorker();
-    bool connectToDataBase();
+    explicit sqlWorker();
+    ~sqlWorker();
     void closeConnection();
-    void insertDataIntoDataBase(int pos, QString name, int count);
-    void deleteItemFromDatabase(int pos);
-    void selectItemFromDataBase(int pos);
-    void updateItemOnDataBse(int pos, int count);
-    void clearTableInDataBase();
+    bool insertDataIntoDataBase(QString tableName, QString name, int pos = 0, int count = 0);
+    bool deleteItemFromDatabase(int pos);
+    QVariantList selectItemFromDataBase(int pos);
+    bool updateItemOnDataBase(int pos, int count);
+    bool clearTableInDataBase();
+    void creatTables();
 
-    QSqlDatabase dataBase;
+private:
+    bool connectToDataBase();
+    QSqlDatabase userDataBase;
     QSqlQuery *query;
     const QString path;
+
 
 };
 

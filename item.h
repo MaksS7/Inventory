@@ -10,6 +10,7 @@
 #include <QDrag>
 #include <QMimeData>
 #include <QApplication>
+#include "sqlworker.h"
 
 class item : public QWidget
 {
@@ -21,6 +22,7 @@ private:
     const QString nameItem;
     const QPixmap logo;
     QLabel *itemImage;
+    sqlWorker userDataBase;
 
 protected:
     void mousePressEvent(QMouseEvent* event);

@@ -43,9 +43,9 @@ private:
     } itemCellInfo = {0, " "};
 
     QVector<cellInfo> vInfoTable;
+    sqlWorker sqlDataBase;
     int cColumn;
     int cRow;
-//    sqlWorker sqlDataBase;
 
 protected:
     bool dropMimeData(int row, int column, const QMimeData *data, Qt::DropAction action) override;

@@ -133,8 +133,8 @@
       <rect>
        <x>550</x>
        <y>50</y>
-       <width>100</width>
-       <height>100</height>
+       <width>150</width>
+       <height>150</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -145,8 +145,14 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>100</width>
-       <height>100</height>
+       <width>150</width>
+       <height>150</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>150</width>
+       <height>150</height>
       </size>
      </property>
      <property name="acceptDrops">
@@ -159,10 +165,10 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>180</y>
-       <width>102</width>
-       <height>102</height>
+       <x>540</x>
+       <y>230</y>
+       <width>201</width>
+       <height>171</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="vBoxLayoutItem"/>
@@ -171,9 +177,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
-       <width>441</width>
-       <height>391</height>
+       <y>10</y>
+       <width>491</width>
+       <height>451</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="vBoxLayoutInventory"/>
@@ -186,7 +192,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
